@@ -174,8 +174,16 @@ int main()
 					cout << "You do not have enough mana for that spell, try a different command.\n";
 				}
 			if (enemyattackroll >= 10){
-				cout << "You got hit for " << enemyattack << "hp.\n\n";
-				hp = hp - enemyattack;
+				switch(random(1, 12)){
+					case 1:case 2:case 3:case 4:case 5:case 6:case 7:
+						cout << "You were attacked for " << attack << "hp.\n\n";
+						enemyhp = enemyhp - attack;
+						break;
+					case 8:case 9:case 10:
+						cout << "you were shot for " << enemyspell << "hp.\n\n";
+						hp = hp - enemyspell;
+						break;
+				}
 			}
 				else {
 					cout << "The enemy missed you.\n\n";
