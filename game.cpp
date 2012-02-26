@@ -7,9 +7,8 @@ int main()
 {
 	srand((unsigned)time(0));
 	string input; string area = "forest";
-	int dlow = 1; int d6 = 6; int d8 = 8; int d12 = 12; int d20 = 20;
-	int hp = 15 + random(dlow, d20); int hpmax = hp; int mp = 10 + random(dlow, d20);
-		int mpmax = mp; int exp = 0; int gold = 5 + random(dlow, d12);
+	int hp = 15 + random(1, 20); int hpmax = hp; int mp = 10 + random(1, 20);
+		int mpmax = mp; int exp = 0; int gold = 5 + random(1, 12);
 
 	begin:
 	cout << "You arrive in town\n";
@@ -80,43 +79,43 @@ int main()
 		case 1:
 		case 2:
 			cout << "You encounter a Giant Rat!\n";
-			enemyattack = random(dlow, d6);
+			enemyattack = random(1, 6);
 			enemyhp = 25;
-			goldget = random(dlow, d6);
+			goldget = random(1, 6);
 			break;
 		case 3:
 			cout << "You encounter test 3.\n";
-			enemyattack = random(dlow, d6);
+			enemyattack = random(1, 6);
 			enemyhp = 25;
-			goldget = random(dlow, d6);
+			goldget = random(1, 6);
 			break;
 		case 4:
 			cout << "You encounter test 4.\n";
-			enemyattack = random(dlow, d6);
+			enemyattack = random(1, 6);
 			enemyhp = 25;
-			goldget = random(dlow, d6);
+			goldget = random(1, 6);
 			break;
 		case 5:
 			cout << "You encounter test 5.\n";
-			enemyattack = random(dlow, d6);
+			enemyattack = random(1, 6);
 			enemyhp = 25;
-			goldget = random(dlow, d6);
+			goldget = random(1, 6);
 			break;
 		case 6:
 			cout << "You encounter test 6.\n";
-			enemyattack = random(dlow, d6);
+			enemyattack = random(1, 6);
 			enemyhp = 25;
-			goldget = random(dlow, d6);
+			goldget = random(1, 6);
 			break;
 		}
 	}
 
 	do {
-		int attack= random(dlow, d8);
-		int heal = random(dlow, d6);
-		int magicmissile = random(dlow, d6) + 2;
-		int attackroll = random(dlow, d20);
-		int enemyattackroll = random(dlow, d20);
+		int attack= random(1, 8);
+		int heal = random(1, 6);
+		int magicmissile = random(1, 6) + 2;
+		int attackroll = random(1, 20);
+		int enemyattackroll = random(1, 20);
 
 		cout << ">";
 		cin >> input;
