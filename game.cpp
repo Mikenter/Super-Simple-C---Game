@@ -75,7 +75,7 @@ int main()
 	int enemyhp;
 	int goldget;
 	if(area == "forest"){
-		switch(random(1, 6)){
+		switch(random (1, 6)){
 		case 1:
 		case 2:
 			cout << "You encounter a Giant Rat!\n";
@@ -84,10 +84,12 @@ int main()
 			goldget = random(1, 6);
 			break;
 		case 3:
-			cout << "You encounter test 3.\n";
-			enemyattack = random(1, 6);
-			enemyhp = 25;
-			goldget = random(1, 6);
+			cout << "Elfling\n";
+			enemyspell = random(5, 10);
+			enemyattack = random(2, 5);
+			enemyhp = random(15, 25);
+			goldget = random(0, 5);
+
 			break;
 		case 4:
 			cout << "You encounter test 4.\n";
@@ -171,8 +173,14 @@ int main()
 					cout << "You do not have enough mana for that spell, try a different command.\n";
 				}
 			if (enemyattackroll >= 10){
-				cout << "You got hit for " << enemyattack << "hp.\n\n";
-				hp = hp - enemyattack;
+				if(random(1, 12) <= 7){
+					cout << "You were attacked for " << enemyattack << "hp.\n\n";
+					hp = hp - enemyattack;
+				}
+				else {
+					cout << "you were shot for " << enemyspell << "hp.\n\n";
+					hp = hp - enemyspell;
+				}
 			}
 				else {
 					cout << "The enemy missed you.\n\n";
