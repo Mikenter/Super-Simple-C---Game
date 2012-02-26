@@ -25,6 +25,12 @@ int main()
 		cout << "'quit - quit the game\n\n";
 		goto begin;
 	}
+	else if (input == "debug"){
+		hp = 1000;
+		mp = 1000;
+		gold = 1000;
+		exp = 1000;
+	}
 	else if (input == "inn"){
 		cout << "Welcome to the inn lad, would you like to stay a night? Only a mere 5 gold coins.\n";
 		inn:
