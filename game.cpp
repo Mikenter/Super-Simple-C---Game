@@ -12,7 +12,7 @@ int main()
 		int mpmax = mp; int exp = 0; int gold = 5 + random(dlow, d12);
 
 	begin:
-	cout << "test\n";
+	cout << "You arrive in town\n";
 	begin1:
 	cout << ">";
 	cin >> input;
@@ -130,15 +130,8 @@ int main()
 		}
 		else if (input == "attack" || input == "atk") {
 			if (attackroll >= 10){
-				switch(random(1, 10)){
-				case 1:case 2:case 3:case 4:case 5:case 6:case 7:
 					cout << "You attacked the enemy for " << attack << "hp.\n";
 					enemyhp = enemyhp - attack;
-					break;
-				case 8:case 9:case 10:
-
-					break;
-				}
 			}
 				else {
 					cout <<"You missed the enemy!\n";
