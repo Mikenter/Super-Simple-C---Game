@@ -74,14 +74,17 @@ int main()
 	int enemyspell;
 	int enemyhp;
 	int goldget;
+	int expget;
 	if(area == "forest"){
 		switch(random (1, 6)){
 		case 1:
 		case 2:
 			cout << "You encounter a Giant Rat!\n";
+			enemyspell = random(5, 10);
 			enemyattack = random(1, 6);
 			enemyhp = 25;
 			goldget = random(1, 6);
+			expget = 10;
 			break;
 		case 3:
 			cout << "Elfling\n";
@@ -89,25 +92,31 @@ int main()
 			enemyattack = random(2, 5);
 			enemyhp = random(15, 25);
 			goldget = random(0, 5);
-
+			expget = 10;
 			break;
 		case 4:
 			cout << "You encounter test 4.\n";
+			enemyspell = random(5, 10);
 			enemyattack = random(1, 6);
 			enemyhp = 25;
 			goldget = random(1, 6);
+			expget = 10;
 			break;
 		case 5:
 			cout << "You encounter test 5.\n";
+			enemyspell = random(5, 10);
 			enemyattack = random(1, 6);
 			enemyhp = 25;
 			goldget = random(1, 6);
+			expget = 10;
 			break;
 		case 6:
 			cout << "You encounter test 6.\n";
+			enemyspell = random(5, 10);
 			enemyattack = random(1, 6);
 			enemyhp = 25;
 			goldget = random(1, 6);
+			expget = 10;
 			break;
 		}
 	}
@@ -138,12 +147,18 @@ int main()
 					cout <<"You missed the enemy!\n";
 				}
 			if (enemyattackroll >= 10){
-				cout << "You got hit for " << enemyattack << "hp.\n\n";
-				hp = hp - enemyattack;
-			}
-				else {
-					cout << "The enemy missed you.\n\n";
+				if(random(1, 12) <= 7){
+					cout << "You were attacked for " << enemyattack << "hp.\n\n";
+					hp = hp - enemyattack;
 				}
+				else {
+					cout << "you were shot for " << enemyspell << "hp.\n\n";
+					hp = hp - enemyspell;
+				}
+			}
+			else {
+				cout << "The enemy missed you.\n\n";
+			}
 		}
 		else if (input == "heal"){
 			if (mp > 3){
@@ -155,12 +170,18 @@ int main()
 					cout << "You do not have enough mana for that spell, try a different command.\n\n";
 				}
 			if (enemyattackroll >= 10){
-				cout << "You got hit for " << enemyattack << "hp.\n\n";
-				hp = hp - enemyattack;
-			}
-				else {
-					cout << "The enemy missed you.\n\n";
+				if(random(1, 12) <= 7){
+					cout << "You were attacked for " << enemyattack << "hp.\n\n";
+					hp = hp - enemyattack;
 				}
+				else {
+					cout << "you were shot for " << enemyspell << "hp.\n\n";
+					hp = hp - enemyspell;
+				}
+			}
+			else {
+				cout << "The enemy missed you.\n\n";
+			}
 		}
 
 		else if (input == "magicmissile" || input == "mm"){
@@ -182,9 +203,9 @@ int main()
 					hp = hp - enemyspell;
 				}
 			}
-				else {
-					cout << "The enemy missed you.\n\n";
-				}
+			else {
+				cout << "The enemy missed you.\n\n";
+			}
 		}
 
 		else if (input == "hp" || input == "mp" || input == "exp" || input == "gold" || input == "info")
@@ -197,11 +218,13 @@ int main()
 		cout << "You have each fallen at the same time." << endl;
 	else if(hp <= 0){
 		cout << "You have been defeated!" << endl;
-		exp = 0;
+		cout << ">";
+		cin >> input;
+		return 0;
 	}
 	else if(enemyhp <= 0){
 		cout << "You have won the battle!" << endl;
-		exp = exp + 25;
+		exp = exp + expget;
 		gold = gold + goldget;
 	}
 
@@ -219,7 +242,7 @@ int main()
 		goto loop2;
 	}
 	else if (input == "quit") return 0;
-	else goto loop2;
+	else{cout << "That's not an input silly!\n\n"; goto loop2;}
 }
 
 int random(int low, int high)
