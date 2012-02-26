@@ -12,11 +12,7 @@ int main()
 		int mpmax = mp; int exp = 0; int gold = 5 + random(dlow, d12);
 
 	begin:
-<<<<<<< HEAD
-	cout << "You arrive in toWn\n";
-=======
 	cout << "You arrive in town\n";
->>>>>>> c7893c33e8e616f4e72ecc256a253f51f7d79360
 	begin1:
 	cout << ">";
 	cin >> input;
