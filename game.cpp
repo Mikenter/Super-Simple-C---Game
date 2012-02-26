@@ -76,6 +76,7 @@ int main()
 	int goldget;
 	int expget;
 	string mon;
+	string enemyspelltxt;
 	if(area == "forest"){
 		switch(random (1, 6)){
 		case 1:case 2:case 3:case 4:case 5:
@@ -99,10 +100,12 @@ int main()
 
 		if(mon == "rat"){
 			enemyspell = random(5, 10);
+			enemyspelltxt = "YES\n\n";
 			enemyattack = random(1, 6);
 		}
 		else if(mon == "elf"){
 			enemyspell = random(5, 10);
+			enemyspelltxt = "YES\n\n";
 			enemyattack = random(1, 6);
 		}
 
@@ -159,7 +162,7 @@ int main()
 					hp = hp - enemyattack;
 				}
 				else {
-					cout << "you were shot for " << enemyspell << "hp.\n\n";
+					cout << enemyspelltxt;
 					hp = hp - enemyspell;
 				}
 			}
