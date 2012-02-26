@@ -71,12 +71,13 @@ int main()
 	else{ cout << "That's not a valid command, type help to see the commands\n\n"; goto begin;}
 
 	battle:
-	int enemyspell;
 	int enemyattack;
+	int enemyspell;
 	int enemyhp;
 	int goldget;
 	if(area == "forest"){
 		switch(random (1, 6)){
+
 		case 1:
 		case 2:
 			cout << "You encounter a Giant Rat!\n";
@@ -131,8 +132,15 @@ int main()
 		}
 		else if (input == "attack" || input == "atk") {
 			if (attackroll >= 10){
-				cout << "You attacked the enemy for " << attack << "hp.\n";
-				enemyhp = enemyhp - attack;
+				switch(random(1, 10)){
+				case 1:case 2:case 3:case 4:case 5:case 6:case 7:
+					cout << "You attacked the enemy for " << attack << "hp.\n";
+					enemyhp = enemyhp - attack;
+					break;
+				case 8:case 9:case 10:
+
+					break;
+				}
 			}
 				else {
 					cout <<"You missed the enemy!\n";
