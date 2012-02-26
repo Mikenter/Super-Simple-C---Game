@@ -87,7 +87,7 @@ int main()
 		case 3:
 			cout << "You encounter test 3.\n";
 			enemyattack = random(dlow, d6);
-			enemyhp = 25;
+			enemyhp = random(15, 25);
 			goldget = random(dlow, d6);
 			break;
 		case 4:
