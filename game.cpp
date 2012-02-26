@@ -229,7 +229,7 @@ int main()
 		goto loop2;
 	}
 	else if (input == "quit") return 0;
-	else{cout << "That's not an input silly!\n\n"; goto loop2;}
+	else{cout << "That's not a valid command. Please type help to see a list of commands.\n\n"; goto loop2;}
 }
 
 int random(int low, int high)
