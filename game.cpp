@@ -12,7 +12,7 @@ int main()
 		int mpmax = mp; int exp = 0; int gold = 5 + random(dlow, d12);
 
 	begin:
-	cout << "test\n";
+	cout << "You arrive in town\n";
 	begin1:
 	cout << ">";
 	cin >> input;
