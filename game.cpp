@@ -7,16 +7,12 @@ int main()
 {
 	srand((unsigned)time(0));
 	string input; string area = "forest";
-	int dlow = 1; int d6high = 6; int d8high = 8; int d12 = 12; int d20high = 20;
-	int hp = 15 + random(dlow, d20high); int hpmax = hp; int mp = 10 + random(dlow, d20high);
+	int dlow = 1; int d6 = 6; int d8 = 8; int d12 = 12; int d20 = 20;
+	int hp = 15 + random(dlow, d20); int hpmax = hp; int mp = 10 + random(dlow, d20);
 		int mpmax = mp; int exp = 0; int gold = 5 + random(dlow, d12);
 
 	begin:
-<<<<<<< HEAD
-	cout << "You arrive in toWn\n";
-=======
 	cout << "You arrive in town\n";
->>>>>>> c7893c33e8e616f4e72ecc256a253f51f7d79360
 	begin1:
 	cout << ">";
 	cin >> input;
@@ -75,7 +71,7 @@ int main()
 	else{ cout << "That's not a valid command, type help to see the commands\n\n"; goto begin;}
 
 	battle:
-	int mon = random(dlow, d6high);
+	int mon = random(dlow, d6);
 	int enemyattack;
 	int enemyhp;
 	int goldget;
@@ -84,43 +80,43 @@ int main()
 		case 1:
 		case 2:
 			cout << "You encounter a Giant Rat!\n";
-			enemyattack = random(dlow, d6high);
+			enemyattack = random(dlow, d6);
 			enemyhp = 25;
-			goldget = random(dlow, d6high);
+			goldget = random(dlow, d6);
 			break;
 		case 3:
 			cout << "You encounter test 3.\n";
-			enemyattack = random(dlow, d6high);
+			enemyattack = random(dlow, d6);
 			enemyhp = 25;
-			goldget = random(dlow, d6high);
+			goldget = random(dlow, d6);
 			break;
 		case 4:
 			cout << "You encounter test 4.\n";
-			enemyattack = random(dlow, d6high);
+			enemyattack = random(dlow, d6);
 			enemyhp = 25;
-			goldget = random(dlow, d6high);
+			goldget = random(dlow, d6);
 			break;
 		case 5:
 			cout << "You encounter test 5.\n";
-			enemyattack = random(dlow, d6high);
+			enemyattack = random(dlow, d6);
 			enemyhp = 25;
-			goldget = random(dlow, d6high);
+			goldget = random(dlow, d6);
 			break;
 		case 6:
 			cout << "You encounter test 6.\n";
-			enemyattack = random(dlow, d6high);
+			enemyattack = random(dlow, d6);
 			enemyhp = 25;
-			goldget = random(dlow, d6high);
+			goldget = random(dlow, d6);
 			break;
 		}
 	}
 
 	do {
-		int attack= random(dlow, d8high);
-		int heal = random(dlow, d6high);
-		int magicmissile = random(dlow, d6high) + 2;
-		int attackroll = random(dlow, d20high);
-		int enemyattackroll = random(dlow, d20high);
+		int attack= random(dlow, d8);
+		int heal = random(dlow, d6);
+		int magicmissile = random(dlow, d6) + 2;
+		int attackroll = random(dlow, d20);
+		int enemyattackroll = random(dlow, d20);
 
 		cout << ">";
 		cin >> input;
