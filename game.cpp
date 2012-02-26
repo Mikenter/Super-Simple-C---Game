@@ -86,12 +86,19 @@ int main()
 	string enemyattacktxt;
 	if(area == "forest"){
 		switch(random (1, 6)){
-		case 1:case 2:case 3:case 4:case 5:
+		case 1:case 2:case 3:case 4:
 			cout << "You encounter a Giant Rat!\n";
 			enemyhp = 25;
 			goldget = random(1, 6);
 			expget = 10;
 			mon = "rat";
+			break;
+		case 5:
+			cout<< "You encountered a Tree Spider";
+			enemyhp = 15;
+			goldget = random(0, 3);
+			expget = 15;
+			mon = "treespider\n";
 			break;
 		case 6:
 			cout << "You encounter an Elfling\n";
@@ -104,18 +111,24 @@ int main()
 	}
 
 	do {
-
-		if(mon == "rat"){
+	 if(mon == "elfling"){
+		enemyspell = random(5, 10);
+		enemyspelltxt = "You were shot for ";
+		enemyattack = random(1, 6);
+		enemyattacktxt = "You were stabbed for ";
+	}
+	 else if(mon == "rat"){
 			enemyspell = random(5, 10);
 			enemyspelltxt = "You were bit for ";
 			enemyattack = random(1, 6);
 			enemyattacktxt = "You were scratched for ";
+
 		}
-		else if(mon == "elfling"){
-			enemyspell = random(5, 10);
-			enemyspelltxt = "You were shot for ";
-			enemyattack = random(1, 6);
-			enemyattacktxt = "You were stabbed for ";
+		else if (mon == "treespider"){
+			enemyspell = random(3, 7);
+			enemyspelltxt = "Tree Spider spit acid on you damaging you for ";
+			enemyattack =  random(3, 8);
+			enemyattacktxt = "You were bit for ";
 		}
 
 		int attack = random(1, 8);
