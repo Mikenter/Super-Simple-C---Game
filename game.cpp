@@ -13,6 +13,7 @@ int main()
 
 	begin:
 	cout << "You arrive in town\n";
+	cout << "I AM TESTING";
 	begin1:
 	cout << ">";
 	cin >> input;
