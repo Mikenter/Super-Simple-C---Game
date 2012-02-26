@@ -77,6 +77,7 @@ int main()
 	int expget;
 	string mon;
 	string enemyspelltxt;
+	string enemyattacktxt;
 	if(area == "forest"){
 		switch(random (1, 6)){
 		case 1:case 2:case 3:case 4:case 5:
@@ -87,11 +88,11 @@ int main()
 			mon = "rat";
 			break;
 		case 6:
-			cout << "Elfling\n";
+			cout << "You encounter an Elfling\n";
 			enemyhp = random(15, 25);
 			goldget = random(0, 5);
 			expget = 10;
-			mon = "elf";
+			mon = "elfling";
 			break;
 		}
 	}
@@ -100,13 +101,15 @@ int main()
 
 		if(mon == "rat"){
 			enemyspell = random(5, 10);
-			enemyspelltxt = "YES\n\n";
+			enemyspelltxt = "You were bit for ";
 			enemyattack = random(1, 6);
+			enemyattacktxt = "You were scratched for ";
 		}
-		else if(mon == "elf"){
+		else if(mon == "elfling"){
 			enemyspell = random(5, 10);
-			enemyspelltxt = "YES\n\n";
+			enemyspelltxt = "You were shot for ";
 			enemyattack = random(1, 6);
+			enemyattacktxt = "You were stabbed for ";
 		}
 
 		int attack = random(1, 8);
@@ -135,11 +138,11 @@ int main()
 				}
 			if (enemyattackroll >= 10){
 				if(random(1, 12) <= 7){
-					cout << "You were attacked for " << enemyattack << "hp.\n\n";
+					cout << enemyattacktxt << enemyattack << "hp.\n\n";
 					hp = hp - enemyattack;
 				}
 				else {
-					cout << "you were shot for " << enemyspell << "hp.\n\n";
+					cout << enemyspelltxt << enemyspell << "hp.\n\n";
 					hp = hp - enemyspell;
 				}
 			}
@@ -158,11 +161,11 @@ int main()
 				}
 			if (enemyattackroll >= 10){
 				if(random(1, 12) <= 7){
-					cout << "You were attacked for " << enemyattack << "hp.\n\n";
+					cout << enemyattacktxt << enemyattack << "hp.\n\n";
 					hp = hp - enemyattack;
 				}
 				else {
-					cout << enemyspelltxt;
+					cout << enemyspelltxt << enemyspell << "hp.\n\n";
 					hp = hp - enemyspell;
 				}
 			}
@@ -182,11 +185,11 @@ int main()
 				}
 			if (enemyattackroll >= 10){
 				if(random(1, 12) <= 7){
-					cout << "You were attacked for " << enemyattack << "hp.\n\n";
+					cout << enemyattacktxt << enemyattack << "hp.\n\n";
 					hp = hp - enemyattack;
 				}
 				else {
-					cout << "you were shot for " << enemyspell << "hp.\n\n";
+					cout << enemyspelltxt << enemyspell << "hp.\n\n";
 					hp = hp - enemyspell;
 				}
 			}
