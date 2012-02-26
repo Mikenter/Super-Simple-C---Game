@@ -75,54 +75,38 @@ int main()
 	int enemyhp;
 	int goldget;
 	int expget;
+	string mon;
 	if(area == "forest"){
 		switch(random (1, 6)){
-		case 1:
-		case 2:
+		case 1:case 2:case 3:case 4:case 5:
 			cout << "You encounter a Giant Rat!\n";
-			enemyspell = random(5, 10);
-			enemyattack = random(1, 6);
 			enemyhp = 25;
 			goldget = random(1, 6);
 			expget = 10;
+			mon = "rat";
 			break;
-		case 3:
+		case 6:
 			cout << "Elfling\n";
-			enemyspell = random(5, 10);
-			enemyattack = random(2, 5);
 			enemyhp = random(15, 25);
 			goldget = random(0, 5);
 			expget = 10;
-			break;
-		case 4:
-			cout << "You encounter test 4.\n";
-			enemyspell = random(5, 10);
-			enemyattack = random(1, 6);
-			enemyhp = 25;
-			goldget = random(1, 6);
-			expget = 10;
-			break;
-		case 5:
-			cout << "You encounter test 5.\n";
-			enemyspell = random(5, 10);
-			enemyattack = random(1, 6);
-			enemyhp = 25;
-			goldget = random(1, 6);
-			expget = 10;
-			break;
-		case 6:
-			cout << "You encounter test 6.\n";
-			enemyspell = random(5, 10);
-			enemyattack = random(1, 6);
-			enemyhp = 25;
-			goldget = random(1, 6);
-			expget = 10;
+			mon = "elf";
 			break;
 		}
 	}
 
 	do {
-		int attack= random(1, 8);
+
+		if(mon == "rat"){
+			enemyspell = random(5, 10);
+			enemyattack = random(1, 6);
+		}
+		else if(mon == "elf"){
+			enemyspell = random(5, 10);
+			enemyattack = random(1, 6);
+		}
+
+		int attack = random(1, 8);
 		int heal = random(1, 6);
 		int magicmissile = random(1, 6) + 2;
 		int attackroll = random(1, 20);
