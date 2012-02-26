@@ -13,7 +13,6 @@ int main()
 
 	begin:
 	cout << "You arrive in town\n";
-	cout << "I AM TESTING";
 	begin1:
 	cout << ">";
 	cin >> input;
@@ -72,12 +71,12 @@ int main()
 	else{ cout << "That's not a valid command, type help to see the commands\n\n"; goto begin;}
 
 	battle:
-	int mon = random(dlow, d6);
+	int enemyspell;
 	int enemyattack;
 	int enemyhp;
 	int goldget;
 	if(area == "forest"){
-		switch(mon){
+		switch(random (1, 6)){
 		case 1:
 		case 2:
 			cout << "You encounter a Giant Rat!\n";
@@ -86,10 +85,11 @@ int main()
 			goldget = random(dlow, d6);
 			break;
 		case 3:
-			cout << "You encounter test 3.\n";
-			enemyattack = random(dlow, d6);
+			cout << "Elfling\n";
+			enemyspell = random(5, 10);
+			enemyattack = random(2, 5);
 			enemyhp = random(15, 25);
-			goldget = random(dlow, d6);
+			goldget = random(0, 5);
 			break;
 		case 4:
 			cout << "You encounter test 4.\n";
