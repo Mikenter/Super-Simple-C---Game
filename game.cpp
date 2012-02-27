@@ -5,8 +5,13 @@ using namespace std;
 int random(int, int);
 int main() {
 	srand((unsigned)time(0));
-	string input; string weapon = "club"; int weapondmg = random(1, 6);
+	string input; string weapon;
 	int hp = 15 + random(1, 20); int hpmax = hp; int mp = 10 + random(1, 20);int mpmax = mp; int exp = 0; int gold = 5 + random(1, 12);
+	switch(random(1, 4)){
+		case 1: case 2: weapon = "club"; break;
+		case 3: case 4: weapon = "longsword"; break;
+	}
+
 
 	begin:
 	cout << "You arrive in town\n";
@@ -16,20 +21,20 @@ int main() {
 
 	if (input == "help") {
 		cout << "Commands are:\n";
-		cout << "'battle' - start a battle\n";
+		cout << "'road' - leave town in search of battles\n";
 		cout << "'inn' - takes you to the inn, where you can heal\n";
 		cout << "'shop - takes you to the shop\n";
-		cout << "'hp', 'mp', 'exp', 'gold', or 'info' - view your current exp, gold, hp, and mp.\n";
+		cout << "'hp', 'mp', 'exp', 'gold', 'weapon', or 'info' - view your currently equiped weapon and current exp, gold, hp, and mp.\n";
 		cout << "'quit - quit the game\n\n";
 		goto begin1;
 	}
-	else if (input == "debug"){
+	/*else if (input == "debug"){
 		hp = 1000;
 		mp = 1000;
 		gold = 1000;
 		exp = 1000;
 		goto begin1;
-	}
+	}*/
 	else if (input == "inn"){
 		cout << "Welcome to the inn lad, would you like to stay a night? Only a mere 5 gold coins.\n";
 		inn:
@@ -138,8 +143,9 @@ int main() {
 			goto begin;
 		}
 	}
-	else if (input == "hp" || input == "mp" || input == "exp" || input == "gold" || input == "info"){
-		cout << "You have " << exp << " exp, " << gold << " gold, " << hp << " hp, " << mp << " mp.\n\n";
+	else if (input == "hp" || input == "mp" || input == "exp" || input == "gold" || input == "wep" || input == "weapon" || input == "info"){
+		cout << "You have " << exp << " exp, " << gold << " gold, " << hp << " hp, " << mp << " mp.\n";
+		cout << "You are currently wielding a " << weapon << ".\n\n";
 		goto begin1;
 	}
 	else if (input == "quit"){
@@ -156,7 +162,7 @@ int main() {
 
 
 	road:
-	cout << "The road splits in several directions. One leading to a 'forest', another to the 'mountains' and one more heading towards a 'meadow'.\n";
+	cout << "The road only goes one way, into a 'forest'.\n";
 	cout << ">";
 	cin >> input;
 	string area = input;
@@ -174,72 +180,74 @@ int main() {
 		switch(random (1, 6)){
 		case 1:case 2:case 3:
 			cout << "You encounter a Giant Rat!\n";
-			enemyhp = 25;
+			enemyhp = random(1, 8) + 8;
 			goldget = random(1, 6);
 			expget = 10;
 			mon = "rat";
 			break;
 		case 4:
 			cout << "You have encountered a Snake!\n";
-			enemyhp = random(10, 20);
-			goldget = random(3, 6);
+			enemyhp = random(1, 6) + 12;
+			goldget = random(1, 6);
 			expget = 5;
 			mon = "snake";
 			break;
 		case 5:
 			cout<< "You encountered a Tree Spider\n";
 			enemyhp = 15;
-			goldget = random(0, 3);
+			goldget = random(1, 6);
 			expget = 15;
 			mon = "treespider";
 			break;
 		case 6:
 			cout << "You encounter an Elfling\n";
-			enemyhp = random(15, 25);
-			goldget = random(0, 5);
-			expget = 10;
+			enemyhp = random(1, 8) + 15;
+			goldget = random(1, 6) + 3;
+			expget = 20;
 			mon = "elfling";
 			break;
 		}
 	}
-	else if (area == "mountains"){
+	/*else if (area == "mountains"){
 
 	}
 	else if (area == "meadows"){
 
-	}
+	}*/
 	else {
 		cout << "No such area has been discovered, yet!/n/n";
 		goto road;
 	}
 
-	do {//Monster Stats
+	do {
+		//Monster Stats
 		if(mon == "elfling"){
-			enemyspell = random(5, 10);
-			enemyspelltxt = "You were shot for ";
-			enemyattack = random(1, 6);
+			enemyattack = random(1, 8);
 			enemyattacktxt = "You were stabbed for ";
+			enemyspell = random(1, 8) + 2;
+			enemyspelltxt = "You were shot for ";
 		}
 		else if(mon == "rat"){
-			enemyspell = random(5, 10);
-			enemyspelltxt = "You were bit for ";
 			enemyattack = random(1, 6);
 			enemyattacktxt = "You were scratched for ";
+			enemyspell = random(1, 6) + 1;
+			enemyspelltxt = "You were bit for ";
 		}
-	 else if(mon == "snake"){
-		 enemyspell = random(4, 7);
-		 enemyspelltxt = "You were poisoned for ";
-		 enemyattack = random(2, 4);
-		 enemyattacktxt = "you were bit for ";
+		else if(mon == "snake"){
+			 enemyattack = random(1, 6) + 1;
+			 enemyattacktxt = "you were bit for ";
+			 enemyspell = random(1, 8);
+			 enemyspelltxt = "You were poisoned for ";
 	 	 }
 		else if (mon == "treespider"){
-			enemyspell = random(4, 7);
-			enemyspelltxt = "Tree Spider spit acid on you damaging you for ";
-			enemyattack =  random(3, 6);
+			enemyattack =  random(1, 8) - 1;
 			enemyattacktxt = "You were bit for ";
+			enemyspell = random(1, 8) + 1;
+			enemyspelltxt = "Tree Spider spit acid on you damaging you for ";
 		 }
 
 		//Player Stats
+		int weapondmg;
 		if (weapon == "club") weapondmg = random(1,6);
 		else if (weapon == "longsword") weapondmg = random(1,8);
 		int heal = random(1, 6);
@@ -258,11 +266,11 @@ int main() {
 			cout << "'heal' - heal yourself.\n";
 			cout << "'run' - attempt to run from battle.\n";
 			cout << "'magicmissile' or 'mm' - cast magic missile on the enemy.\n";
-			cout << "'hp', 'mp', 'exp', gold, or 'info' - view your current exp, gold, hp, and mp.\n\n";
+			cout << "'hp', 'mp', or 'info' - view your hp and mp.\n\n";
 		}
-		else if (input == "debug"){
+		/*else if (input == "debug"){
 			goto loop2;
-		}
+		}*/
 		else if (input == "run"){
 			if (random(1, 20) >= 12){
 				cout <<"You ran away.\n\n";
@@ -330,7 +338,6 @@ int main() {
 				cout << "The enemy missed you.\n\n";
 			}
 		}
-
 		else if (input == "magicmissile" || input == "mm"){
 			if (mp > 7){
 				cout << "You blast the enemy for " << magicmissile << "hp with magic missile!\n";
@@ -354,11 +361,9 @@ int main() {
 				cout << "The enemy missed you.\n\n";
 			}
 		}
-
-		else if (input == "hp" || input == "mp" || input == "exp" || input == "gold" || input == "info")
-			cout << "You have " << exp << " exp, " << gold << " gold, " << hp << " hp, " << mp << " mp.\n\n";
-		else
-			cout << "That is not a valid command, type 'help' to see a list of commands";
+		else if (input == "hp" || input == "mp" || input == "info")
+			cout << "You have " << hp << " hp, and " << mp << " mp.\n\n";
+		else cout << "That is not a valid command, type 'help' to see a list of commands.\n\n";
 	} while (hp > 0 && enemyhp > 0);
 
 	if(hp <= 0 && enemyhp <= 0)
