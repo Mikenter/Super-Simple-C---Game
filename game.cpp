@@ -99,7 +99,6 @@ int main() {
 				cin >> input;
 			}
 		}
-		}
 		else {cout << "You decline his offer and leave the store.\n\n"; goto begin;}
 	}
 	else if (input == "hp" || input == "mp" || input == "exp" || input == "gold" || input == "info"){
