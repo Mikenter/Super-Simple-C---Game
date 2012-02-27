@@ -5,7 +5,7 @@ using namespace std;
 int random(int, int);
 int main() {
 	srand((unsigned)time(0));
-	string input; string area = "forest";
+	string input; string area = "forest"; string weapon = "club"; int weapondmg = random(1, 6);
 	int hp = 15 + random(1, 20); int hpmax = hp; int mp = 10 + random(1, 20);int mpmax = mp; int exp = 0; int gold = 5 + random(1, 12);
 
 	begin:
@@ -57,10 +57,49 @@ int main() {
 			goto begin;}
 	}
 	else if (input == "shop"){
+		shop:
 		cout << "\nWelcome to my humble shop, I have a little bit of everything. Have a 'look' around.\n";
 		cout << ">";
 		cin >> input;
-		if (input == "look"){ cout << "There's nothing around, you decide to leave.\n\n"; goto begin;}
+		if (input == "look"){
+			cout << "You see:\n";
+			cout << "A 'club'\n";
+			cout << "A 'longsword'\n\n";
+			cout << ">";
+			cin >> input;
+			if (input == "club"){
+				cout << "\nYou fancy buying the club? That'll cost you 7 gold.\n";
+				cout << ">";
+				cin >> input;
+				if ((input == "y" && weapon == "club") || (input == "yes" && weapon == "club")){
+					cout << "You already seem to have this weapon friend.\n\n";
+					goto shop;
+				}
+				else if (input == "y"  || input == "yes"){
+					if (gold >= 7){
+						gold = gold - 7;
+						weapon = "club";
+						weapondmg = random (1, 6);
+						cout << "Thanks for buying that!\n\n";
+						goto shop;
+					}
+				}
+				else if (input == "n" || input == "no"){
+					cout << "No? Too bad, it's a fine weapon.\n\n";
+					goto shop;
+				}
+				else {
+					cout << "Come back later when you speak like a normal person.\n\n";
+					goto begin;
+				}
+			}
+			else if (input == "longsword"){
+				cout << "\nYou fancy buying the longsword? That'll cost you 15 gold.\n";
+				cout << ">";
+				cin >> input;
+			}
+		}
+		}
 		else {cout << "You decline his offer and leave the store.\n\n"; goto begin;}
 	}
 	else if (input == "hp" || input == "mp" || input == "exp" || input == "gold" || input == "info"){
