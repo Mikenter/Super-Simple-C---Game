@@ -3,12 +3,10 @@
 #include <cstdlib>
 using namespace std;
 int random(int, int);
-int main()
-{
+int main() {
 	srand((unsigned)time(0));
 	string input; string area = "forest";
-	int hp = 15 + random(1, 20); int hpmax = hp; int mp = 10 + random(1, 20);
-		int mpmax = mp; int exp = 0; int gold = 5 + random(1, 12);
+	int hp = 15 + random(1, 20); int hpmax = hp; int mp = 10 + random(1, 20);int mpmax = mp; int exp = 0; int gold = 5 + random(1, 12);
 
 	begin:
 	cout << "You arrive in town\n";
@@ -16,20 +14,21 @@ int main()
 	cout << ">";
 	cin >> input;
 
-	if (input == "help"){
+	if (input == "help") {
 		cout << "Commands are:\n";
 		cout << "'battle' - start a battle\n";
 		cout << "'inn' - takes you to the inn, where you can heal\n";
 		cout << "'shop - takes you to the shop\n";
 		cout << "'hp', 'mp', 'exp', 'gold', or 'info' - view your current exp, gold, hp, and mp.\n";
 		cout << "'quit - quit the game\n\n";
-		goto begin;
+		goto begin1;
 	}
 	else if (input == "debug"){
 		hp = 1000;
 		mp = 1000;
 		gold = 1000;
 		exp = 1000;
+		goto begin1;
 	}
 	else if (input == "inn"){
 		cout << "Welcome to the inn lad, would you like to stay a night? Only a mere 5 gold coins.\n";
@@ -68,12 +67,14 @@ int main()
 		cout << "You have " << exp << " exp, " << gold << " gold, " << hp << " hp, " << mp << " mp.\n\n";
 		goto begin1;
 	}
-	else if (input == "quit") return 0;
+	else if (input == "quit"){
+		return 0;}
 	else if (input == "battle"){
 		cout << endl;
 		goto battle;
 	}
-	else{ cout << "That's not a valid command, type help to see the commands\n\n"; goto begin;}
+	else{
+		cout << "That's not a valid command, type help to see the commands\n\n"; goto begin;}
 
 	battle:
 	int enemyattack;
