@@ -111,8 +111,23 @@ int main() {
 		cout << endl;
 		goto battle;
 	}
+	else if (input == "road"){
+		cout << "You have left the village./n";
+		goto road;
+	}
 	else{
 		cout << "That's not a valid command, type help to see the commands\n\n"; goto begin;}
+	road:
+		cout << "The road splits in several directions. One leading to a forest, another to the mountains and one more heading towards a meadow./n";
+		if (input == "forest"){
+			goto battle;
+		}
+		else if (input == "mountains"){
+			goto battle1;
+		}
+		else if (input == "meadow"){
+			goto battle2;
+		}
 
 	battle:
 	int enemyattack;
@@ -176,7 +191,6 @@ int main() {
 		int attackroll = random(1, 20);
 		int enemyattackroll = random(1, 20);
 
-
 		cout << ">";
 		cin >> input;
 
@@ -189,6 +203,15 @@ int main() {
 		}
 		else if (input == "debug"){
 			goto loop2;
+		}
+		else if (input == "run"){
+			if (random(1, 20) >= 12){
+				cout <<"You ran away./n";
+			goto begin;
+			}
+			else{
+				cout <<"You failed to run away./n";
+			}
 		}
 		else if (input == "attack" || input == "atk") {
 			if (attackroll >= 10){
