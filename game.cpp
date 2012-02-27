@@ -37,7 +37,6 @@ int main() {
 	}*/
 	else if (input == "inn"){
 		cout << "Welcome to the inn lad, would you like to stay a night? Only a mere 5 gold coins.\n\n";
-		inn:
 		cout << ">";
 		cin >> input;
 		if ((input == "yes" && gold >= 5) || (input == "y" && gold >= 5)){
@@ -179,29 +178,36 @@ int main() {
 	if(area == "forest"){
 		cout << "You have entered the forest and ";
 		switch(random (1, 6)){
-		case 1:case 2:case 3:
-			cout << "encountered a Giant Rat!\n\n";
+		case 1:case 2:
+			cout << "encountered a Giant Rat!\n";
 			enemyhp = random(1, 8) + 8;
 			goldget = random(1, 6);
 			expget = 10;
 			mon = "rat";
 			break;
+		case 3:
+			cout << "encountered a Wild Boar!\n";
+			enemyhp = random(1, 8) + 6;
+			goldget = random(1, 6) + 1;
+			expget = 10;
+			mon = "wildboar";
+			break;
 		case 4:
-			cout << " have encountered a Snake!\n\n";
+			cout << "encountered a Snake!\n\n";
 			enemyhp = random(1, 6) + 12;
-			goldget = random(1, 6);
+			goldget = random(1, 6) + 2;
 			expget = 5;
 			mon = "snake";
 			break;
 		case 5:
-			cout<< "You encountered a Tree Spider!\n\n";
+			cout<< "encountered a Tree Spider!\n\n";
 			enemyhp = 15;
-			goldget = random(1, 6);
+			goldget = random(1, 6) - 2;
 			expget = 15;
 			mon = "treespider";
 			break;
 		case 6:
-			cout << " encountered an Elfling!\n\n";
+			cout << "encountered an Elfling!\n\n";
 			enemyhp = random(1, 8) + 15;
 			goldget = random(1, 6) + 3;
 			expget = 20;
@@ -246,6 +252,12 @@ int main() {
 			enemyspell = random(1, 8) + 1;
 			enemyspelltxt = "Tree Spider spit acid on you damaging you for ";
 		 }
+		else if (mon == "wildboar"){
+			enemyattack = random(1, 4) + 2;
+			enemyattacktxt = "you were gored for ";
+			enemyspell = random(1, 6) + 2;
+			enemyspelltxt = "The Wild Boar has gone berserk and rammed you for ";
+		}
 
 		//Player Stats
 		int weapondmg;
