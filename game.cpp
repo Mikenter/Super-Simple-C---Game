@@ -45,7 +45,7 @@ int main() {
 			goto inn;
 		}
 		else if (input == "no" || input == "n" || input == "back"){
-			cout << "No? too bad, come back some other time!";
+			cout << "No? too bad, come back some other time!\n\n";
 			goto begin;
 		}
 		else if( gold < 5){
@@ -95,11 +95,11 @@ int main() {
 			mon = "rat";
 			break;
 		case 5:
-			cout<< "You encountered a Tree Spider";
+			cout<< "You encountered a Tree Spider\n";
 			enemyhp = 15;
 			goldget = random(0, 3);
 			expget = 15;
-			mon = "treespider\n";
+			mon = "treespider";
 			break;
 		case 6:
 			cout << "You encounter an Elfling\n";
