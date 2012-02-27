@@ -245,6 +245,7 @@ int main() {
 			cout << "Commands are:\n";
 			cout << "'attack' or 'atk' - attack the enemy.\n";
 			cout << "'heal' - heal yourself.\n";
+			cout << "'run' - attempt to run from battle.\n";
 			cout << "'magicmissile' or 'mm' - cast magic missile on the enemy.\n";
 			cout << "'hp', 'mp', 'exp', gold, or 'info' - view your current exp, gold, hp, and mp.\n\n";
 		}
@@ -253,11 +254,24 @@ int main() {
 		}
 		else if (input == "run"){
 			if (random(1, 20) >= 12){
-				cout <<"You ran away./n";
-			goto begin;
+				cout <<"You ran away.\n\n";
+				goto begin;
 			}
 			else{
-				cout <<"You failed to run away./n";
+				cout <<"You failed to run away.\n";
+				if (enemyattackroll >= 10){
+					if(random(1, 12) <= 7){
+						cout << enemyattacktxt << enemyattack << "hp.\n\n";
+						hp = hp - enemyattack;
+					}
+					else {
+						cout << enemyspelltxt << enemyspell << "hp.\n\n";
+						hp = hp - enemyspell;
+					}
+							}
+				else {
+					cout << "The enemy missed you.\n\n";
+				}
 			}
 		}
 		else if (input == "attack" || input == "atk") {
@@ -312,9 +326,9 @@ int main() {
 				enemyhp = enemyhp - magicmissile;
 				mp = mp - 8;
 			}
-				else {
-					cout << "You do not have enough mana for that spell, try a different command.\n";
-				}
+			else {
+				cout << "You do not have enough mana for that spell, try a different command.\n";
+			}
 			if (enemyattackroll >= 10){
 				if(random(1, 12) <= 7){
 					cout << enemyattacktxt << enemyattack << "hp.\n\n";
@@ -333,7 +347,7 @@ int main() {
 		else if (input == "hp" || input == "mp" || input == "exp" || input == "gold" || input == "info")
 			cout << "You have " << exp << " exp, " << gold << " gold, " << hp << " hp, " << mp << " mp.\n\n";
 		else
-			cout << "That's not an input silly." << endl << endl;
+			cout << "That is not a valid command, type 'help' to see a list of commands";
 	} while (hp > 0 && enemyhp > 0);
 
 	if(hp <= 0 && enemyhp <= 0)
