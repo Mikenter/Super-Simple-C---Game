@@ -65,7 +65,7 @@ int main() {
 		if (input == "hp"){
 			if (exp >= hpexpcost){
 				int hpgain = random(1, 6);
-				hp = hp + hpgain;
+				hpmax = hpmax + hpgain;
 				exp = exp - hpexpcost;
 				hpexpcost = hpexpcost + 25;
 				cout << "You punch yourself in the face repeatedly to strengthen your endurance.\nYou gain " << hpgain << " hp.\n\n";
@@ -79,7 +79,7 @@ int main() {
 		else if (input == "mp"){
 			if (exp >= mpexpcost){
 				int mpgain = random(1, 6);
-				mp = mp + mpgain;
+				mpmax = mpmax + mpgain;
 				exp = exp - mpexpcost;
 				mpexpcost = mpexpcost + 25;
 				cout << "You stare at a spoon for hours trying to bend it.\nYou gain " << mpgain << " mp.\n\n";
