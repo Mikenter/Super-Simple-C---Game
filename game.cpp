@@ -5,7 +5,7 @@ using namespace std;
 int random(int, int);
 int main() {
 	srand((unsigned)time(0));
-	string input; string area = "forest"; string weapon = "club"; int weapondmg = random(1, 6);
+	string input; string weapon = "club"; int weapondmg = random(1, 6);
 	int hp = 15 + random(1, 20); int hpmax = hp; int mp = 10 + random(1, 20);int mpmax = mp; int exp = 0; int gold = 5 + random(1, 12);
 
 	begin:
@@ -106,30 +106,22 @@ int main() {
 		goto begin1;
 	}
 	else if (input == "quit"){
-		return 0;}
-	else if (input == "battle"){
-		cout << endl;
-		goto battle;
+		return 0;
 	}
 	else if (input == "road"){
-		cout << "You have left the village./n";
+		cout << "You have left the village.\n\n";
 		goto road;
 	}
 	else{
 		cout << "That's not a valid command, type help to see the commands\n\n"; goto begin;}
-	road:
-		cout << "The road splits in several directions. One leading to a forest, another to the mountains and one more heading towards a meadow./n";
-		if (input == "forest"){
-			goto battle;
-		}
-		else if (input == "mountains"){
-			goto battle1;
-		}
-		else if (input == "meadow"){
-			goto battle2;
-		}
 
-	battle:
+
+	road:
+	cout << "The road splits in several directions. One leading to a 'forest', another to the 'mountains' and one more heading towards a 'meadow'.\n";
+	cout << ">";
+	cin >> input;
+	string area = input;
+	//battle integers
 	int enemyattack;
 	int enemyspell;
 	int enemyhp;
@@ -139,6 +131,7 @@ int main() {
 	string enemyspelltxt;
 	string enemyattacktxt;
 	if(area == "forest"){
+		cout << "You have entered the forest.\n";
 		switch(random (1, 6)){
 		case 1:case 2:case 3:case 4:
 			cout << "You encounter a Giant Rat!\n";
@@ -162,6 +155,16 @@ int main() {
 			mon = "elfling";
 			break;
 		}
+	}
+	else if (area == "mountains"){
+
+	}
+	else if (area == "meadows"){
+
+	}
+	else {
+		cout << "No such area has been discovered, yet!/n/n";
+		goto road;
 	}
 
 	do {
