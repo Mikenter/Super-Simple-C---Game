@@ -14,7 +14,7 @@ int main() {
 
 
 	begin:
-	cout << "You arrive in town\n";
+	cout << "You arrive in town\n\n";
 	begin1:
 	cout << ">";
 	cin >> input;
@@ -24,8 +24,8 @@ int main() {
 		cout << "'road' - leave town in search of battles\n";
 		cout << "'inn' - takes you to the inn, where you can heal\n";
 		cout << "'shop - takes you to the shop\n";
-		cout << "'hp', 'mp', 'exp', 'gold', 'weapon', or 'info' - view your currently equiped weapon and current exp, gold, hp, and mp.\n";
-		cout << "'quit - quit the game\n\n";
+		cout << "'info' - view your currently equiped weapon and current exp, gold, hp, and mp.\n";
+		cout << "'quit' - quit the game\n\n";
 		goto begin1;
 	}
 	/*else if (input == "debug"){
@@ -36,7 +36,7 @@ int main() {
 		goto begin1;
 	}*/
 	else if (input == "inn"){
-		cout << "Welcome to the inn lad, would you like to stay a night? Only a mere 5 gold coins.\n";
+		cout << "Welcome to the inn lad, would you like to stay a night? Only a mere 5 gold coins.\n\n";
 		inn:
 		cout << ">";
 		cin >> input;
@@ -45,12 +45,8 @@ int main() {
 			cout << "You slept the night and feel refreshed.\n\n";
 			goto begin;
 		}
-		else if (input == "help"){
-			cout << "'yes' or 'y' to sleep at the inn. 'no', 'n', or 'back' to exit the inn.";
-			goto inn;
-		}
 		else if (input == "no" || input == "n" || input == "back"){
-			cout << "No? too bad, come back some other time!\n\n";
+			cout << "No? Too bad, come back some other time!\n\n";
 			goto begin;
 		}
 		else if( gold < 5){
@@ -63,37 +59,37 @@ int main() {
 	}
 	else if (input == "shop"){
 		shop:
-		cout << "\nWelcome to my humble shop, I have a little bit of everything. Have a 'look' around.\n";
+		cout << "Welcome to my humble shop, I have a little bit of everything. Have a 'look' around.\n\n";
 		cout << ">";
 		cin >> input;
 		if (input == "look"){
-			cout << "\nYou see:\n";
+			cout << "You see:\n";
 			cout << "A 'club'\n";
 			cout << "A 'longsword'\n\n";
 			cout << ">";
 			cin >> input;
 			if (input == "club"){
-				cout << "You fancy buying the club? That'll cost you 7 gold.\n";
+				cout << "You fancy buying the club? That'll cost you 7 gold.\n\n";
 				cout << ">";
 				cin >> input;
 				if (input == "y"  || input == "yes"){
 					if (weapon == "club"){
-						cout << "You already seem to have this weapon friend.\n";
+						cout << "You already seem to have this weapon friend.\n\n";
 						goto shop;
 					}
 					else if (gold >= 7){
 						gold = gold - 7;
 						weapon = "club";
-						cout << "Thanks for buying that!\n";
+						cout << "Thanks for buying that!\n\n";
 						goto shop;
 					}
 					else {
-						cout << "You don't seem to have enough money, what a shame.\n";
+						cout << "You don't seem to have enough money, what a shame.\n\n";
 						goto shop;
 					}
 				}
 				else if (input == "n" || input == "no"){
-					cout << "No? Too bad, it's a fine weapon.\n";
+					cout << "No? Too bad, it's a fine weapon.\n\n";
 					goto shop;
 				}
 				else {
@@ -121,12 +117,17 @@ int main() {
 						goto shop;
 					}
 				}
-			}
-			else if (input == "n" || input == "no"){
-				cout << "No? Too bad, it's a fine weapon.\n";
-				goto shop;
+				else if (input == "n" || input == "no"){
+					cout << "No? Too bad, it's a fine weapon.\n";
+					goto shop;
+				}
+				else {
+					cout << "Come back later when you speak like a normal person.\n\n";
+					goto begin;
+				}
 			}
 			else if (input == "leave" || input == "back"){
+				cout << "Come back again sometime!\n\n";
 				goto begin;
 			}
 			else {
@@ -152,17 +153,17 @@ int main() {
 		return 0;
 	}
 	else if (input == "road"){
-		cout << "You have left the village.\n\n";
+		cout << "You have left the village.\n";
 		goto road;
 	}
 	else{
 		cout << "That's not a valid command, type help to see the commands\n\n";
-		goto begin;
+		goto begin1;
 	}
 
 
 	road:
-	cout << "The road only goes one way, into a 'forest'.\n";
+	cout << "The road only goes one way, into a 'forest'.\n\n";
 	cout << ">";
 	cin >> input;
 	string area = input;
@@ -176,31 +177,31 @@ int main() {
 	string enemyspelltxt;
 	string enemyattacktxt;
 	if(area == "forest"){
-		cout << "You have entered the forest.\n";
+		cout << "You have entered the forest and ";
 		switch(random (1, 6)){
 		case 1:case 2:case 3:
-			cout << "You encounter a Giant Rat!\n";
+			cout << "encountered a Giant Rat!\n\n";
 			enemyhp = random(1, 8) + 8;
 			goldget = random(1, 6);
 			expget = 10;
 			mon = "rat";
 			break;
 		case 4:
-			cout << "You have encountered a Snake!\n";
+			cout << " have encountered a Snake!\n\n";
 			enemyhp = random(1, 6) + 12;
 			goldget = random(1, 6);
 			expget = 5;
 			mon = "snake";
 			break;
 		case 5:
-			cout<< "You encountered a Tree Spider\n";
+			cout<< "You encountered a Tree Spider!\n\n";
 			enemyhp = 15;
 			goldget = random(1, 6);
 			expget = 15;
 			mon = "treespider";
 			break;
 		case 6:
-			cout << "You encounter an Elfling\n";
+			cout << " encountered an Elfling!\n\n";
 			enemyhp = random(1, 8) + 15;
 			goldget = random(1, 6) + 3;
 			expget = 20;
@@ -215,7 +216,7 @@ int main() {
 
 	}*/
 	else {
-		cout << "No such area has been discovered, yet!/n/n";
+		cout << "No such area has been discovered, yet!\n\n";
 		goto road;
 	}
 
@@ -322,7 +323,7 @@ int main() {
 				mp = mp - 4;
 			}
 				else {
-					cout << "You do not have enough mana for that spell, try a different command.\n\n";
+					cout << "You do not have enough mana for that spell, try a different command.\n";
 				}
 			if (enemyattackroll >= 10){
 				if(random(1, 12) <= 7){
@@ -367,15 +368,15 @@ int main() {
 	} while (hp > 0 && enemyhp > 0);
 
 	if(hp <= 0 && enemyhp <= 0)
-		cout << "You have each fallen at the same time." << endl;
+		cout << "You have each fallen at the same time.\n\n";
 	else if(hp <= 0){
-		cout << "You have been defeated!" << endl;
+		cout << "You have been defeated!\n\n";
 		cout << ">";
 		cin >> input;
 		return 0;
 	}
 	else if(enemyhp <= 0){
-		cout << "You have won the battle!" << endl;
+		cout << "You have won the battle!\n\n";
 		exp = exp + expget;
 		gold = gold + goldget;
 	}
@@ -390,7 +391,7 @@ int main() {
 		goto begin;
 	}
 	else if (input == "help"){
-		cout << "Type 'back' to go back to town. Type 'quit' to quit the game.\n";
+		cout << "Type 'back' to go back to town. Type 'quit' to quit the game.\n\n";
 		goto loop2;
 	}
 	else if (input == "quit") return 0;
