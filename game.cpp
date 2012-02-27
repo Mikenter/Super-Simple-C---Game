@@ -62,30 +62,33 @@ int main() {
 		cout << ">";
 		cin >> input;
 		if (input == "look"){
-			cout << "You see:\n";
+			cout << "\nYou see:\n";
 			cout << "A 'club'\n";
 			cout << "A 'longsword'\n\n";
 			cout << ">";
 			cin >> input;
 			if (input == "club"){
-				cout << "\nYou fancy buying the club? That'll cost you 7 gold.\n";
+				cout << "You fancy buying the club? That'll cost you 7 gold.\n";
 				cout << ">";
 				cin >> input;
-				if ((input == "y" && weapon == "club") || (input == "yes" && weapon == "club")){
-					cout << "You already seem to have this weapon friend.\n\n";
-					goto shop;
-				}
-				else if (input == "y"  || input == "yes"){
-					if (gold >= 7){
+				if (input == "y"  || input == "yes"){
+					if (weapon == "club"){
+						cout << "You already seem to have this weapon friend.\n";
+						goto shop;
+					}
+					else if (gold >= 7){
 						gold = gold - 7;
 						weapon = "club";
-						weapondmg = random (1, 6);
-						cout << "Thanks for buying that!\n\n";
+						cout << "Thanks for buying that!\n";
+						goto shop;
+					}
+					else {
+						cout << "You don't seem to have enough money, what a shame.\n";
 						goto shop;
 					}
 				}
 				else if (input == "n" || input == "no"){
-					cout << "No? Too bad, it's a fine weapon.\n\n";
+					cout << "No? Too bad, it's a fine weapon.\n";
 					goto shop;
 				}
 				else {
@@ -94,12 +97,46 @@ int main() {
 				}
 			}
 			else if (input == "longsword"){
-				cout << "\nYou fancy buying the longsword? That'll cost you 15 gold.\n";
+				cout << "You fancy buying the longsword? That'll cost you 15 gold.\n";
 				cout << ">";
 				cin >> input;
+				if (input == "y"  || input == "yes"){
+					if (weapon == "longsword"){
+						cout << "You already seem to have this weapon friend.\n";
+						goto shop;
+					}
+					else if (gold >=15){
+						gold = gold - 15;
+						weapon = "longsword";
+						cout << "Thanks for buying that!\n";
+						goto shop;
+					}
+					else {
+						cout << "You don't seem to have enough money, what a shame.\n";
+						goto shop;
+					}
+				}
+			}
+			else if (input == "n" || input == "no"){
+				cout << "No? Too bad, it's a fine weapon.\n";
+				goto shop;
+			}
+			else if (input == "leave" || input == "back"){
+				goto begin;
+			}
+			else {
+				cout << "Come back later when you speak like a normal person.\n\n";
+				goto begin;
 			}
 		}
-		else {cout << "You decline his offer and leave the store.\n\n"; goto begin;}
+		else if (input == "leave" || input == "back"){
+			cout << "Goodbye. Come again!\n\n";
+			goto begin;
+		}
+		else {
+			cout << "Come back later when you speak like a normal person.\n\n";
+			goto begin;
+		}
 	}
 	else if (input == "hp" || input == "mp" || input == "exp" || input == "gold" || input == "info"){
 		cout << "You have " << exp << " exp, " << gold << " gold, " << hp << " hp, " << mp << " mp.\n\n";
@@ -113,7 +150,9 @@ int main() {
 		goto road;
 	}
 	else{
-		cout << "That's not a valid command, type help to see the commands\n\n"; goto begin;}
+		cout << "That's not a valid command, type help to see the commands\n\n";
+		goto begin;
+	}
 
 
 	road:
@@ -168,13 +207,14 @@ int main() {
 	}
 
 	do {
-	 if(mon == "elfling"){
-		enemyspell = random(5, 10);
-		enemyspelltxt = "You were shot for ";
-		enemyattack = random(1, 6);
-		enemyattacktxt = "You were stabbed for ";
-	}
-	 else if(mon == "rat"){
+		//Monster Stats
+		if(mon == "elfling"){
+			enemyspell = random(5, 10);
+			enemyspelltxt = "You were shot for ";
+			enemyattack = random(1, 6);
+			enemyattacktxt = "You were stabbed for ";
+		}
+		else if(mon == "rat"){
 			enemyspell = random(5, 10);
 			enemyspelltxt = "You were bit for ";
 			enemyattack = random(1, 6);
@@ -188,9 +228,13 @@ int main() {
 			enemyattacktxt = "You were bit for ";
 		}
 
-		int attack = random(1, 8);
+		//Player Stats
+		if (weapon == "club") weapondmg = random(1,6);
+		else if (weapon == "longsword") weapondmg = random(1,8);
 		int heal = random(1, 6);
 		int magicmissile = random(1, 6) + 2;
+
+		//d20 Attack rolls
 		int attackroll = random(1, 20);
 		int enemyattackroll = random(1, 20);
 
@@ -218,8 +262,8 @@ int main() {
 		}
 		else if (input == "attack" || input == "atk") {
 			if (attackroll >= 10){
-					cout << "You attacked the enemy for " << attack << "hp.\n";
-					enemyhp = enemyhp - attack;
+					cout << "You attacked the enemy for " << weapondmg << "hp.\n";
+					enemyhp = enemyhp - weapondmg;
 			}
 				else {
 					cout <<"You missed the enemy!\n";
