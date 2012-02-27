@@ -7,6 +7,7 @@ int main() {
 	srand((unsigned)time(0));
 	string input; string weapon;
 	int hp = 15 + random(1, 20); int hpmax = hp; int mp = 10 + random(1, 20);int mpmax = mp; int exp = 0; int gold = 5 + random(1, 12);
+		int hpexpcost = 25; int mpexpcost = 25;
 	switch(random(1, 4)){
 		case 1: case 2: weapon = "club"; break;
 		case 3: case 4: weapon = "longsword"; break;
@@ -28,13 +29,13 @@ int main() {
 		cout << "'quit' - quit the game\n\n";
 		goto begin1;
 	}
-	/*else if (input == "debug"){
+	else if (input == "debug"){
 		hp = 1000;
 		mp = 1000;
 		gold = 1000;
 		exp = 1000;
 		goto begin1;
-	}*/
+	}
 	else if (input == "inn"){
 		cout << "Welcome to the inn lad, would you like to stay a night? Only a mere 5 gold coins.\n\n";
 		cout << ">";
@@ -55,6 +56,48 @@ int main() {
 		else {
 			cout << "What kind of gibberish are you speaking, come back when you have your head on right.\n\n";
 			goto begin;}
+	}
+	else if (input == "gym"){
+		gym:
+		cout << "Welcome to the gym. What would you like to train?\n\n";
+		cout << ">";
+		cin >> input;
+		if (input == "hp"){
+			if (exp >= hpexpcost){
+				int hpgain = random(1, 6);
+				hp = hp + hpgain;
+				exp = exp - hpexpcost;
+				hpexpcost = hpexpcost + 25;
+				cout << "You punch yourself in the face repeatedly to strengthen your endurance.\nYou gain " << hpgain << " hp.\n\n";
+				goto gym;
+			}
+			else{
+				cout << "You don't have enough exp to train that stat.\n\n";
+				goto gym;
+			}
+		}
+		else if (input == "mp"){
+			if (exp >= mpexpcost){
+				int mpgain = random(1, 6);
+				mp = mp + mpgain;
+				exp = exp - mpexpcost;
+				mpexpcost = mpexpcost + 25;
+				cout << "You stare at a spoon for hours trying to bend it.\nYou gain " << mpgain << " mp.\n\n";
+				goto gym;
+			}
+			else{
+				cout << "You don't have enough exp to train that stat.\n\n";
+				goto gym;
+			}
+		}
+		else if (input == "leave" || input == "back"){
+			cout << "Nice having you here!\n\n";
+			goto begin;
+		}
+		else {
+			cout << "I don't quite understand what you're saying. Come back when you talk right.\n\n";
+			goto begin;
+		}
 	}
 	else if (input == "shop"){
 		shop:
@@ -179,14 +222,14 @@ int main() {
 		cout << "You have entered the forest and ";
 		switch(random (1, 6)){
 		case 1:case 2:
-			cout << "encountered a Giant Rat!\n";
+			cout << "encountered a Giant Rat!\n\n";
 			enemyhp = random(1, 8) + 8;
 			goldget = random(1, 6);
 			expget = 10;
 			mon = "rat";
 			break;
 		case 3:
-			cout << "encountered a Wild Boar!\n";
+			cout << "encountered a Wild Boar!\n\n";
 			enemyhp = random(1, 8) + 6;
 			goldget = random(1, 6) + 1;
 			expget = 10;
