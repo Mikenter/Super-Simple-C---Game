@@ -137,6 +137,7 @@ int main()
 		int attackroll = random(1, 20);
 		int enemyattackroll = random(1, 20);
 
+
 		cout << ">";
 		cin >> input;
 
@@ -146,6 +147,9 @@ int main()
 			cout << "'heal' - heal yourself.\n";
 			cout << "'magicmissile' or 'mm' - cast magic missile on the enemy.\n";
 			cout << "'hp', 'mp', 'exp', gold, or 'info' - view your current exp, gold, hp, and mp.\n\n";
+		}
+		else if (input == "debug"){
+			goto loop2;
 		}
 		else if (input == "attack" || input == "atk") {
 			if (attackroll >= 10){
