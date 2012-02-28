@@ -24,6 +24,7 @@ int main() {
 		cout << "Commands are:\n";
 		cout << "'road' - leave town in search of battles\n";
 		cout << "'inn' - takes you to the inn, where you can heal\n";
+		cout << "'gym' - Train your stats such as mp and hp\n";
 		cout << "'shop - takes you to the shop\n";
 		cout << "'info' - view your currently equiped weapon and current exp, gold, hp, and mp.\n";
 		cout << "'quit' - quit the game\n\n";
