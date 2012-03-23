@@ -100,6 +100,9 @@ int main() {
 			goto begin;
 		}
 	}
+	/*else if (input == "college"){
+
+	}*/
 	else if (input == "shop"){
 		shop:
 		cout << "Welcome to my humble shop, I have a little bit of everything. Have a 'look' around.\n\n";
@@ -216,47 +219,63 @@ int main() {
 	int enemyhp;
 	int goldget;
 	int expget;
+	int depth = 0;
 	string mon;
 	string enemyspelltxt;
 	string enemyattacktxt;
+	depth:
 	if(area == "forest"){
-		cout << "You have entered the forest and ";
-		switch(random (1, 6)){
-		case 1:case 2:
-			cout << "encountered a Giant Rat!\n\n";
-			enemyhp = random(1, 8) + 8;
-			goldget = random(1, 6);
-			expget = 10;
-			mon = "rat";
-			break;
-		case 3:
-			cout << "encountered a Wild Boar!\n\n";
-			enemyhp = random(1, 8) + 6;
-			goldget = random(1, 6) + 1;
-			expget = 10;
-			mon = "wildboar";
-			break;
-		case 4:
-			cout << "encountered a Snake!\n\n";
-			enemyhp = random(1, 6) + 12;
-			goldget = random(1, 6) + 2;
-			expget = 5;
-			mon = "snake";
-			break;
-		case 5:
-			cout<< "encountered a Tree Spider!\n\n";
-			enemyhp = 15;
-			goldget = random(1, 6) - 2;
-			expget = 15;
-			mon = "treespider";
-			break;
-		case 6:
-			cout << "encountered an Elfling!\n\n";
-			enemyhp = random(1, 8) + 15;
-			goldget = random(1, 6) + 3;
-			expget = 20;
-			mon = "elfling";
-			break;
+		if(depth < 3){
+			if(depth == 0)cout << "You have entered the forest and ";
+			else cout << "You have continued farther into the forest and ";
+			switch(random (1, 6)){
+			case 1:case 2:
+				cout << "encountered a Giant Rat!\n\n";
+				enemyhp = random(1, 8) + 8;
+				goldget = random(1, 6);
+				expget = 10;
+				mon = "rat";
+				break;
+			case 3:
+				cout << "encountered a Wild Boar!\n\n";
+				enemyhp = random(1, 8) + 6;
+				goldget = random(1, 6) + 1;
+				expget = 10;
+				mon = "wildboar";
+				break;
+			case 4:
+				cout << "encountered a Snake!\n\n";
+				enemyhp = random(1, 6) + 12;
+				goldget = random(1, 6) + 2;
+				expget = 5;
+				mon = "snake";
+				break;
+			case 5:
+				cout<< "encountered a Tree Spider!\n\n";
+				enemyhp = 15;
+				goldget = random(1, 6) - 2;
+				expget = 15;
+				mon = "treespider";
+				break;
+			case 6:
+				cout << "encountered an Elfling!\n\n";
+				enemyhp = random(1, 8) + 15;
+				goldget = random(1, 6) + 3;
+				expget = 20;
+				mon = "elfling";
+				break;
+			}
+		}
+		else {
+			cout << "You have continued farther into the forest and ";
+			switch(random (1, 6)){
+			case 1:case 2:case 3:case 4:case 5:case 6:
+				cout << "encountered a Bear!\n\n";
+				enemyhp = 20;
+				goldget = random(1, 12) + 5;
+				expget = 27;
+				break;
+			}
 		}
 	}
 	/*else if (area == "mountains"){
@@ -302,6 +321,7 @@ int main() {
 			enemyspell = random(1, 6) + 2;
 			enemyspelltxt = "The Wild Boar has gone berserk and rammed you for ";
 		}
+		if (enemyattack < 0) enemyattack = 0;
 
 		//Player Stats
 		int weapondmg;
@@ -325,9 +345,9 @@ int main() {
 			cout << "'magicmissile' or 'mm' - cast magic missile on the enemy.\n";
 			cout << "'hp', 'mp', or 'info' - view your hp and mp.\n\n";
 		}
-		/*else if (input == "debug"){
+		else if (input == "debug"){
 			goto loop2;
-		}*/
+		}
 		else if (input == "run"){
 			if (random(1, 20) >= 12){
 				cout <<"You ran away.\n\n";
@@ -446,8 +466,13 @@ int main() {
 		cout << endl;
 		goto begin;
 	}
+	else if (input == "continue"){
+		cout << "\n";
+		depth = depth + 1;
+		goto depth;
+	}
 	else if (input == "help"){
-		cout << "Type 'back' to go back to town. Type 'quit' to quit the game.\n\n";
+		cout << "Type 'back' to go back to town.\nType continue to advance further into the area.\nType 'quit' to quit the game.\n\n";
 		goto loop2;
 	}
 	else if (input == "quit") return 0;
