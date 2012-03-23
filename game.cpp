@@ -30,13 +30,13 @@ int main() {
 		cout << "'quit' - quit the game\n\n";
 		goto begin1;
 	}
-	else if (input == "debug"){
+	/*else if (input == "debug"){
 		hp = 1000;
 		mp = 1000;
 		gold = 1000;
 		exp = 1000;
 		goto begin1;
-	}
+	}*/
 	else if (input == "inn"){
 		cout << "Welcome to the inn lad, would you like to stay a night? Only a mere 5 gold coins.\n\n";
 		cout << ">";
@@ -345,9 +345,9 @@ int main() {
 			cout << "'magicmissile' or 'mm' - cast magic missile on the enemy.\n";
 			cout << "'hp', 'mp', or 'info' - view your hp and mp.\n\n";
 		}
-		else if (input == "debug"){
+		/*else if (input == "debug"){
 			goto loop2;
-		}
+		}*/
 		else if (input == "run"){
 			if (random(1, 20) >= 12){
 				cout <<"You ran away.\n\n";
