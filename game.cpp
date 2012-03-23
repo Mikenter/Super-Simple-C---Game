@@ -217,6 +217,8 @@ int main() {
 	int enemyattack;
 	int enemyspell;
 	int enemyhp;
+	int enemymp;
+	int enemympcost;
 	int goldget;
 	int expget;
 	int depth = 0;
@@ -232,6 +234,7 @@ int main() {
 			case 1:case 2:
 				cout << "encountered a Giant Rat!\n\n";
 				enemyhp = random(1, 8) + 8;
+				enemymp = random(1, 8) + 8;
 				goldget = random(1, 6);
 				expget = 10;
 				mon = "rat";
@@ -239,6 +242,7 @@ int main() {
 			case 3:
 				cout << "encountered a Wild Boar!\n\n";
 				enemyhp = random(1, 8) + 6;
+				enemymp = random(1, 8) + 6;
 				goldget = random(1, 6) + 1;
 				expget = 10;
 				mon = "wildboar";
@@ -246,6 +250,7 @@ int main() {
 			case 4:
 				cout << "encountered a Snake!\n\n";
 				enemyhp = random(1, 6) + 12;
+				enemymp = random(1, 6) + 12;
 				goldget = random(1, 6) + 2;
 				expget = 5;
 				mon = "snake";
@@ -253,6 +258,7 @@ int main() {
 			case 5:
 				cout<< "encountered a Tree Spider!\n\n";
 				enemyhp = 15;
+				enemymp = 15;
 				goldget = random(1, 6) - 2;
 				expget = 15;
 				mon = "treespider";
@@ -260,6 +266,7 @@ int main() {
 			case 6:
 				cout << "encountered an Elfling!\n\n";
 				enemyhp = random(1, 8) + 15;
+				enemymp = random(1, 8) + 15;
 				goldget = random(1, 6) + 3;
 				expget = 20;
 				mon = "elfling";
@@ -272,6 +279,7 @@ int main() {
 			case 1:case 2:case 3:case 4:case 5:case 6:
 				cout << "encountered a Bear!\n\n";
 				enemyhp = 20;
+				enemymp = 20;
 				goldget = random(1, 12) + 5;
 				expget = 27;
 				mon = "bear";
@@ -297,36 +305,42 @@ int main() {
 			enemyattacktxt = "The bear slammed it's clam on you for ";
 			enemyspell = random(1, 12) + 7;
 			enemyspelltxt = "The bear breathed fire on you for ";
+			enemympcost = 8;
 		}
 		else if(mon == "elfling"){
 			enemyattack = random(1, 8);
 			enemyattacktxt = "You were stabbed for ";
 			enemyspell = random(1, 8) + 2;
 			enemyspelltxt = "You were shot for ";
+			enemympcost = 8;
 		}
 		else if(mon == "rat"){
 			enemyattack = random(1, 6);
 			enemyattacktxt = "You were scratched for ";
 			enemyspell = random(1, 6) + 1;
 			enemyspelltxt = "You were bit for ";
+			enemympcost = 8;
 		}
 		else if(mon == "snake"){
 			 enemyattack = random(1, 6) + 1;
 			 enemyattacktxt = "you were bit for ";
 			 enemyspell = random(1, 8);
 			 enemyspelltxt = "You were poisoned for ";
+			 enemympcost = 8;
 	 	 }
 		else if (mon == "treespider"){
 			enemyattack =  random(1, 8) - 1;
 			enemyattacktxt = "You were bit for ";
 			enemyspell = random(1, 8) + 1;
 			enemyspelltxt = "Tree Spider spit acid on you damaging you for ";
+			enemympcost = 8;
 		 }
 		else if (mon == "wildboar"){
 			enemyattack = random(1, 4) + 2;
 			enemyattacktxt = "you were gored for ";
 			enemyspell = random(1, 6) + 2;
 			enemyspelltxt = "The Wild Boar has gone berserk and rammed you for ";
+			enemympcost = 8;
 		}
 		if (enemyattack < 0) enemyattack = 0;
 
@@ -350,7 +364,7 @@ int main() {
 			cout << "'heal' - heal yourself.\n";
 			cout << "'run' - attempt to run from battle.\n";
 			cout << "'magicmissile' or 'mm' - cast magic missile on the enemy.\n";
-			cout << "'hp', 'mp', or 'info' - view your hp and mp.\n\n";
+			cout << "'info' - view your hp and mp.\n\n";
 		}
 		else if (input == "debug"){
 			goto loop2;
@@ -363,13 +377,14 @@ int main() {
 			else{
 				cout <<"You failed to run away.\n";
 				if (enemyattackroll >= 10){
-					if(random(1, 12) <= 7){
+					if(random(1, 12) <= 7 || enemymp < enemympcost){
 						cout << enemyattacktxt << enemyattack << "hp.\n\n";
 						hp = hp - enemyattack;
 					}
 					else {
 						cout << enemyspelltxt << enemyspell << "hp.\n\n";
 						hp = hp - enemyspell;
+						enemymp = enemymp - enemympcost;
 					}
 							}
 				else {
@@ -386,13 +401,14 @@ int main() {
 					cout <<"You missed the enemy!\n";
 				}
 			if (enemyattackroll >= 10){
-				if(random(1, 12) <= 7){
+				if(random(1, 12) <= 7 || enemymp < enemympcost){
 					cout << enemyattacktxt << enemyattack << "hp.\n\n";
 					hp = hp - enemyattack;
 				}
 				else {
 					cout << enemyspelltxt << enemyspell << "hp.\n\n";
 					hp = hp - enemyspell;
+					enemymp = enemymp - enemympcost;
 				}
 			}
 			else {
@@ -409,13 +425,14 @@ int main() {
 					cout << "You do not have enough mana for that spell, try a different command.\n";
 				}
 			if (enemyattackroll >= 10){
-				if(random(1, 12) <= 7){
+				if(random(1, 12) <= 7 || enemymp < enemympcost){
 					cout << enemyattacktxt << enemyattack << "hp.\n\n";
 					hp = hp - enemyattack;
 				}
 				else {
 					cout << enemyspelltxt << enemyspell << "hp.\n\n";
 					hp = hp - enemyspell;
+					enemymp = enemymp - enemympcost;
 				}
 			}
 			else {
@@ -432,13 +449,14 @@ int main() {
 				cout << "You do not have enough mana for that spell, try a different command.\n";
 			}
 			if (enemyattackroll >= 10){
-				if(random(1, 12) <= 7){
+				if(random(1, 12) <= 7 || enemymp < enemympcost){
 					cout << enemyattacktxt << enemyattack << "hp.\n\n";
 					hp = hp - enemyattack;
 				}
 				else {
 					cout << enemyspelltxt << enemyspell << "hp.\n\n";
 					hp = hp - enemyspell;
+					enemymp = enemymp - enemympcost;
 				}
 			}
 			else {
@@ -479,7 +497,7 @@ int main() {
 		goto depth;
 	}
 	else if (input == "help"){
-		cout << "Type 'back' to go back to town.\nType continue to advance further into the area.\nType 'quit' to quit the game.\n\n";
+		cout << "Type 'back' to go back to town.\nType 'continue' to advance further into the area.\nType 'quit' to quit the game.\n\n";
 		goto loop2;
 	}
 	else if (input == "quit") return 0;
