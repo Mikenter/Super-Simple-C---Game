@@ -30,13 +30,13 @@ int main() {
 		cout << "'quit' - quit the game\n\n";
 		goto begin1;
 	}
-	/*else if (input == "debug"){
+	else if (input == "debug"){
 		hp = 1000;
 		mp = 1000;
 		gold = 1000;
 		exp = 1000;
 		goto begin1;
-	}*/
+	}
 	else if (input == "inn"){
 		cout << "Welcome to the inn lad, would you like to stay a night? Only a mere 5 gold coins.\n\n";
 		cout << ">";
@@ -274,6 +274,7 @@ int main() {
 				enemyhp = 20;
 				goldget = random(1, 12) + 5;
 				expget = 27;
+				mon = "bear";
 				break;
 			}
 		}
@@ -291,7 +292,13 @@ int main() {
 
 	do {
 		//Monster Stats
-		if(mon == "elfling"){
+		if(mon == "bear"){
+			enemyattack = random(1, 10) + 5;
+			enemyattacktxt = "The bear slammed it's clam on you for ";
+			enemyspell = random(1, 12) + 7;
+			enemyspelltxt = "The bear breathed fire on you for ";
+		}
+		else if(mon == "elfling"){
 			enemyattack = random(1, 8);
 			enemyattacktxt = "You were stabbed for ";
 			enemyspell = random(1, 8) + 2;
@@ -345,9 +352,9 @@ int main() {
 			cout << "'magicmissile' or 'mm' - cast magic missile on the enemy.\n";
 			cout << "'hp', 'mp', or 'info' - view your hp and mp.\n\n";
 		}
-		/*else if (input == "debug"){
+		else if (input == "debug"){
 			goto loop2;
-		}*/
+		}
 		else if (input == "run"){
 			if (random(1, 20) >= 12){
 				cout <<"You ran away.\n\n";
